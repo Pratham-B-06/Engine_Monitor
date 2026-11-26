@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Src/main.c \
+Core/Src/app.c \
 Core/Src/gpio.c \
 Core/Src/dma.c \
 Core/Src/i2c.c \
@@ -64,7 +65,16 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
 Core/Src/system_stm32f4xx.c \
 Core/Src/sysmem.c \
-Core/Src/syscalls.c
+Core/Src/syscalls.c \
+Drivers/CMSIS/DSP/Source/TransformFunctions/arm_rfft_fast_f32.c \
+Drivers/CMSIS/DSP/Source/TransformFunctions/arm_rfft_fast_init_f32.c \
+Drivers/CMSIS/DSP/Source/TransformFunctions/arm_cfft_f32.c \
+Drivers/CMSIS/DSP/Source/TransformFunctions/arm_cfft_init_f32.c \
+Drivers/CMSIS/DSP/Source/TransformFunctions/arm_cfft_radix8_f32.c \
+Drivers/CMSIS/DSP/Source/TransformFunctions/arm_bitreversal2.c \
+Drivers/CMSIS/DSP/Source/CommonTables/arm_common_tables.c \
+Drivers/CMSIS/DSP/Source/CommonTables/arm_const_structs.c \
+Drivers/CMSIS/DSP/Source/ComplexMathFunctions/arm_cmplx_mag_squared_f32.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -117,7 +127,8 @@ AS_DEFS =
 # C defines
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
--DSTM32F446xx
+-DSTM32F446xx \
+-DARM_MATH_CM4
 
 
 # AS includes
@@ -129,7 +140,9 @@ C_INCLUDES =  \
 -IDrivers/STM32F4xx_HAL_Driver/Inc \
 -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
--IDrivers/CMSIS/Include
+-IDrivers/CMSIS/Include \
+-IDrivers/CMSIS/DSP/Include \
+-IDrivers/CMSIS/DSP/PrivateInclude
 
 
 # compile gcc flags
